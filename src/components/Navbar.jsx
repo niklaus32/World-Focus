@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from 'react-router-dom';
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -8,9 +9,9 @@ function Navbar() {
       <div className="container mx-auto flex justify-between items-center p-4">
         <h1 className="text-xl font-bold">UOACS/WINCS</h1>
         <div className="hidden md:flex space-x-6">
-          <a href="/" className="hover:text-gray-200">HOME</a>
-          <a href="/about" className="hover:text-gray-200">ABOUT</a>
-          <a href="/resources" className="hover:text-gray-200">RESOURCES</a>
+          <Link to="/" className="hover:text-gray-200">HOME</Link>
+          <Link to="/about" className="hover:text-gray-200">ABOUT</Link>
+          <Link to="/resources" className="hover:text-gray-200">RESOURCES</Link>
         </div>
       </div>
     </nav>
