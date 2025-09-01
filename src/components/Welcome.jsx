@@ -11,7 +11,7 @@ function Welcome() {
           Build projects that promote health, wellbeing, and a better future.
         </p>
         <div className="mt-6">
-          <Button>Get Started!</Button>
+          <Button className="w-[10px]">Get Started!</Button>
         </div>
       </div>
     </section>
