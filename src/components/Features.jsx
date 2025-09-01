@@ -7,7 +7,7 @@ function Features() {
 
   return (
     <section className="py-16 max-w-6xl mx-auto">
-      <h2 className="text-2xl font-bold text-center mb-10">FEATURES COMPONENT</h2>
+      <p className="text-2xl text-center mb-10">FEATURES COMPONENT</p>
       <div className="grid md:grid-cols-3 gap-8">
         {features.map((f, i) => (
           <div
