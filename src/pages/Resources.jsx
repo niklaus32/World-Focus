@@ -1,4 +1,6 @@
 import Button from '../components/Button'
+import ContactForm from '../components/ContactForm';
+import Features from '../components/Features';
 
 function Resources() {
     return(
@@ -7,6 +9,8 @@ function Resources() {
             <Button>
                 BUTTON
             </Button>
+            <ContactForm></ContactForm>
+            <Features></Features>
         </div>
     )
 }
