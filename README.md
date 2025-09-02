@@ -1,12 +1,28 @@
-# React + Vite
+# WinCS x UOACS Beginner Hackathon 2025
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Getting Started
+Make sure to have done the following:
+- [Created a GitHub account](https://docs.github.com/en/get-started )
+- [Installed Git](https://github.com/git-guides/install-git)
+- [Installed NodeJS](https://nodejs.org/en/download)
 
-Currently, two official plugins are available:
+Feel free to reach out to any execs if you're struggling with these steps
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Running the app
+- Follow the instructions on GitHub to clone this repo
+- Open the root directory of the project
+- Run `npm install` to install the Node dependencies (requires NodeJS installed)
+- Run `npm run dev` to start the app at the url [http://localhost:5173/]
 
-## Expanding the ESLint configuration
+## Useful Resources
+### Git
+- [Git commands cheat sheet](https://education.github.com/git-cheat-sheet-education.pdf)
+- [Git pull requests docs](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)
+- [Git visualiser](https://learngitbranching.js.org/)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### React
+- [React docs](https://react.dev/learn)
+- [React cheat sheet](https://www.freecodecamp.org/news/the-react-cheatsheet/)
+
+
+Feel free to reach out to any exec if you need any help at any time :)
