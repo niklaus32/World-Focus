@@ -24,5 +24,7 @@ Feel free to reach out to any execs if you're struggling with these steps
 - [React docs](https://react.dev/learn)
 - [React cheat sheet](https://www.freecodecamp.org/news/the-react-cheatsheet/)
 
+### Tailwind
+- [Tailwind docs](https://tailwindcss.com/)
 
 Feel free to reach out to any exec if you need any help at any time :)
