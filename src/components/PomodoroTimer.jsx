@@ -139,19 +139,19 @@ export default function PomodoroTimer() {
     mode === "work" ? "Focus" : mode === "short" ? "Short Break" : "Long Break";
 
   return (
-    <div className="max-w-md w-full bg-white rounded-2xl shadow-lg p-6 mx-auto">
-      <h2 className="text-2xl font-bold text-gray-800 mb-2">Pomodoro Timer</h2>
-      <p className="text-sm text-gray-500 mb-4">
+    <div className="w-[320px] bg-white/10 backdrop-blur rounded-xl border border-white/15 p-4 mx-auto text-white shadow-xl">
+      <h2 className="text-xl font-semibold text-white mb-1">Pomodoro Timer</h2>
+      <p className="text-xs text-gray-300 mb-3">
         {label} • {completed}/{dur.roundsUntilLong} before long break
       </p>
 
       {/* Progress ring */}
-      <div className="relative w-56 h-56 mx-auto my-4">
+      <div className="relative w-40 h-40 mx-auto my-3">
         <svg className="w-full h-full -rotate-90" viewBox="0 0 100 100">
           <circle
             cx="50" cy="50" r="45"
             className="stroke-gray-200"
-            strokeWidth="10"
+            strokeWidth="8"
             fill="none"
           />
           <circle
@@ -161,7 +161,7 @@ export default function PomodoroTimer() {
               mode === "work" ? "text-rose-500" :
               mode === "short" ? "text-emerald-500" : "text-cyan-500"
             }
-            strokeWidth="10"
+            strokeWidth="8"
             fill="none"
             strokeDasharray={`${Math.max(0, (percent/100)*2*Math.PI*45)} ${2*Math.PI*45}`}
             strokeLinecap="round"
@@ -169,10 +169,10 @@ export default function PomodoroTimer() {
         </svg>
         <div className="absolute inset-0 grid place-items-center">
           <div className="text-center">
-            <div className="text-5xl font-mono tabular-nums text-gray-800">
+            <div className="text-4xl font-mono tabular-nums text-white">
               {formatTime(secondsLeft)}
             </div>
-            <div className="text-xs text-gray-500 mt-1 uppercase tracking-wide">
+            <div className="text-[10px] text-gray-300 mt-1 uppercase tracking-wide">
               {label}
             </div>
           </div>
@@ -183,28 +183,28 @@ export default function PomodoroTimer() {
       <div className="flex items-center justify-center gap-3 mt-2">
         <button
           onClick={handleStartPause}
-          className={`px-4 py-2 rounded-lg text-white ${
-            isRunning ? "bg-gray-700 hover:bg-gray-800" : "bg-indigo-600 hover:bg-indigo-700"
+          className={`px-3 py-2 rounded-md text-white ${
+            isRunning ? "bg-slate-700 hover:bg-slate-800" : "bg-indigo-500 hover:bg-indigo-600"
           }`}
         >
           {isRunning ? "Pause" : "Start"}
         </button>
         <button
           onClick={handleReset}
-          className="px-4 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-700"
+          className="px-3 py-2 rounded-md bg-white/10 hover:bg-white/20 text-white"
         >
           Reset
         </button>
         <button
           onClick={handleSkip}
-          className="px-4 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-700"
+          className="px-3 py-2 rounded-md bg-white/10 hover:bg-white/20 text-white"
           title="Skip current session"
         >
           Skip
         </button>
         <button
           onClick={() => setShowSettings((s) => !s)}
-          className="px-3 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-700"
+          className="px-2.5 py-2 rounded-md bg-white/10 hover:bg-white/20 text-white"
           title="Settings"
         >
           ⚙️
@@ -218,7 +218,9 @@ export default function PomodoroTimer() {
             key={m}
             onClick={() => { setMode(m); setIsRunning(false); }}
             className={`text-sm px-3 py-1 rounded-full border ${
-              mode === m ? "bg-gray-900 text-white border-gray-900" : "bg-white text-gray-700 border-gray-300"
+              mode === m
+                ? "bg-white/90 text-black border-white/90"
+                : "bg-white/10 text-white border-white/20 hover:bg-white/20"
             }`}
           >
             {m === "work" ? "Focus" : m === "short" ? "Short" : "Long"}
@@ -229,43 +231,43 @@ export default function PomodoroTimer() {
       {/* Settings */}
       {showSettings && (
         <div className="mt-5 border-t pt-4">
-          <h3 className="text-sm font-semibold text-gray-700 mb-3">Durations (minutes)</h3>
+          <h3 className="text-sm font-semibold text-white mb-3">Durations (minutes)</h3>
           <div className="grid grid-cols-2 gap-3">
-            <label className="text-sm text-gray-600">
+            <label className="text-sm text-gray-200">
               Work
               <input
                 type="number"
-                className="mt-1 w-full border rounded-lg px-3 py-2"
+                className="mt-1 w-full border border-white/20 bg-white/10 text-white placeholder-gray-300 rounded-md px-2.5 py-1.5 focus:outline-none focus:border-white/40"
                 value={dur.work}
                 onChange={(e) => handleDurChange("work", e.target.value)}
                 min={1} max={180}
               />
             </label>
-            <label className="text-sm text-gray-600">
+            <label className="text-sm text-gray-200">
               Short break
               <input
                 type="number"
-                className="mt-1 w-full border rounded-lg px-3 py-2"
+                className="mt-1 w-full border border-white/20 bg-white/10 text-white placeholder-gray-300 rounded-md px-2.5 py-1.5 focus:outline-none focus:border-white/40"
                 value={dur.short}
                 onChange={(e) => handleDurChange("short", e.target.value)}
                 min={1} max={60}
               />
             </label>
-            <label className="text-sm text-gray-600">
+            <label className="text-sm text-gray-200">
               Long break
               <input
                 type="number"
-                className="mt-1 w-full border rounded-lg px-3 py-2"
+                className="mt-1 w-full border border-white/20 bg-white/10 text-white placeholder-gray-300 rounded-md px-2.5 py-1.5 focus:outline-none focus:border-white/40"
                 value={dur.long}
                 onChange={(e) => handleDurChange("long", e.target.value)}
                 min={1} max={120}
               />
             </label>
-            <label className="text-sm text-gray-600">
+            <label className="text-sm text-gray-200">
               Rounds until long
               <input
                 type="number"
-                className="mt-1 w-full border rounded-lg px-3 py-2"
+                className="mt-1 w-full border border-white/20 bg-white/10 text-white placeholder-gray-300 rounded-md px-2.5 py-1.5 focus:outline-none focus:border-white/40"
                 value={dur.roundsUntilLong}
                 onChange={(e) => handleDurChange("roundsUntilLong", e.target.value)}
                 min={1} max={12}
@@ -276,8 +278,8 @@ export default function PomodoroTimer() {
       )}
 
       {/* Stats */}
-      <div className="mt-5 text-xs text-gray-500">
-        Total pomodoros: <span className="font-semibold text-gray-700">{totalPomodoros}</span>
+      <div className="mt-4 text-xs text-gray-300">
+        Total pomodoros: <span className="font-semibold text-white">{totalPomodoros}</span>
       </div>
     </div>
   );

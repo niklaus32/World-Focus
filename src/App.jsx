@@ -1,5 +1,6 @@
 import { useState } from "react";
 import WorldGlobe from "./pages/WorldGlobe";
+import DraggablePomodoro from "./components/DraggablePomodoro";
 
 export default function App() {
   const [selectedCity, setSelectedCity] = useState(null);
@@ -34,6 +35,8 @@ export default function App() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-black text-white">
       <h1 className="text-3xl font-bold mb-4">🌍 World Focus App</h1>
+
+      <DraggablePomodoro />
 
       <WorldGlobe cities={cities} onCityClick={setSelectedCity} />
 
