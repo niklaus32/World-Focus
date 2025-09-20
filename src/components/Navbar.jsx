@@ -75,14 +75,9 @@ function Navbar() {
 
   return (
     <>
-      <nav className="bg-green-600 text-white shadow-md">
+      <nav className="bg-black text-white shadow-md">
         <div className="container mx-auto flex justify-between items-center p-4">
-          <h1 className="text-xl font-bold">UOACS/WINCS</h1>
-          <div className="hidden md:flex space-x-6">
-            <Link to="/" className="hover:text-gray-200">HOME</Link>
-            <Link to="/about" className="hover:text-gray-200">ABOUT</Link>
-            <Link to="/resources" className="hover:text-gray-200">RESOURCES</Link>
-          </div>
+          <h1 className="text-3xl font-bold mb-4">🌍 World Focus App</h1>
           <div className="flex items-center gap-4">
             {/* Music Dropdown */}
             <select
@@ -105,7 +100,7 @@ function Navbar() {
             </a>
             {/* Pomodoro Button */}
             <button
-              className="bg-yellow-500 px-3 py-1 rounded text-black"
+              className="bg-blue-600 px-3 py-1 rounded text-white"
               onClick={() => setShowPomodoro(!showPomodoro)}
             >
               Pomodoro
