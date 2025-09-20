@@ -37,7 +37,6 @@ export default function App() {
 
       <WorldGlobe cities={cities} onCityClick={setSelectedCity} />
 
-      {/* Fullscreen video overlay */}
       {selectedCity && (
         <div className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50">
           <div className="relative w-full h-full flex items-center justify-center">
