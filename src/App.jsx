@@ -1,6 +1,6 @@
 import { useState } from "react";
 import WorldGlobe from "./pages/WorldGlobe";
-import PomodoroTimer from "./components/PomodoroTimer";
+import DraggablePomodoro from "./components/DraggablePomodoro";
 import MusicPlayer from "./components/MusicPlayer";
 
 export default function App() {
@@ -14,13 +14,6 @@ export default function App() {
     { city: "Auckland", lat: -36.8485, lng: 174.7633, video: "https://www.youtube.com/embed/VIDEO_ID4" },
   ];
 
-  const musicTracks = [
-    { name: "Lofi Hip Hop Radio", videoId: "https://www.youtubeinmp3.com/fetch/?video=jfKfPfyJRdk" },
-    { name: "Classical Music", videoId: "https://www.youtubeinmp3.com/fetch/?video=0UN_HbOTTcI" },
-    { name: "White Noise", videoId: "https://www.youtubeinmp3.com/fetch/?video=nMfPqeZjc2c" },
-    { name: "Brown Noise", videoId: "https://www.youtubeinmp3.com/fetch/?video=RqzGzwTY-6w" },
-  ];
-
   return (
     <div className="relative min-h-screen bg-black text-white p-4">
       <h1 className="text-3xl font-bold mb-4 text-center">World Focus App</h1>
@@ -28,16 +21,16 @@ export default function App() {
       {/* Globe */}
       <WorldGlobe cities={cities} onCityClick={setSelectedCity} />
 
-      {/* Music player */}
+      {/* Music player (fixed position) */}
       {showMusic && (
-        <div style={{ position: "fixed", top: 100, left: 100, zIndex: 1000, cursor: "grab" }}>
-          <MusicPlayer tracks={musicTracks} />
+        <div style={{ position: "fixed", top: 100, left: 100, zIndex: 1000 }}>
+          <MusicPlayer />
         </div>
       )}
 
       {/* Draggable Pomodoro Timer */}
       <div style={{ position: "fixed", top: 50, right: 50, zIndex: 1000 }}>
-        <PomodoroTimer />
+        <DraggablePomodoro />
       </div>
 
       {/* Fullscreen City Video Overlay */}
@@ -50,7 +43,7 @@ export default function App() {
               title={selectedCity.city}
               allow="autoplay; encrypted-media"
               allowFullScreen
-            ></iframe>
+            />
             <button
               className="absolute top-6 right-6 text-white text-3xl font-bold bg-red-600 px-4 py-2 rounded-lg hover:bg-red-500"
               onClick={() => setSelectedCity(null)}

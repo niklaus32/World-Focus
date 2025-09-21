@@ -1,12 +1,16 @@
 import { useState, useRef, useEffect } from "react";
 import { FaVolumeUp, FaVolumeMute } from "react-icons/fa";
+import brown from "../assets/brown.mp3";
+import white from "../assets/white.mp3";
+import classic from "../assets/classic.mp3";
+import lofi from "../assets/lofi.mp3";
 
 export default function MusicPlayer() {
   const tracks = [
-    { name: "Lofi Hip Hop Radio", src: "https://www.youtubeinmp3.com/fetch/?video=jfKfPfyJRdk" },
-    { name: "Classical Music", src: "https://www.youtubeinmp3.com/fetch/?video=0UN_HbOTTcI" },
-    { name: "White Noise", src: "https://www.youtubeinmp3.com/fetch/?video=nMfPqeZjc2c" },
-    { name: "Brown Noise", src: "https://www.youtubeinmp3.com/fetch/?video=RqzGzwTY-6w" },
+    { name: "Lofi Hip Hop", src: lofi },
+    { name: "Classical", src: classic },
+    { name: "White Noise", src: white },
+    { name: "Brown Noise", src: brown },
   ];
 
   const [currentTrack, setCurrentTrack] = useState(tracks[0]);
@@ -106,9 +110,7 @@ export default function MusicPlayer() {
           value={muted ? 0 : volume}
           onChange={(e) => setVolume(Number(e.target.value))}
           className="flex-1"
-          style={{
-            accentColor: muted ? "#555" : "#4f46e5",
-          }}
+          style={{ accentColor: muted ? "#555" : "#4f46e5" }}
         />
       </div>
 
@@ -130,8 +132,8 @@ export default function MusicPlayer() {
         </button>
       </div>
 
-      {/* Audio element */}
-      <audio ref={audioRef} src={currentTrack.src} />
+      {/* Audio element with looping */}
+      <audio ref={audioRef} src={currentTrack.src} loop />
     </div>
   );
 }
