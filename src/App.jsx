@@ -1,6 +1,5 @@
 import { useState } from "react";
 import WorldGlobe from "./pages/WorldGlobe";
-import DraggablePomodoro from "./components/DraggablePomodoro";
 import Navbar from "./components/Navbar";
 
 export default function App() {
@@ -34,15 +33,28 @@ export default function App() {
   ];
 
   return (
-    <div className="flex flex-col min-h-screen bg-black text-white">
+    <div className="flex flex-col min-h-screen bg-black text-white" style={{ overflow: "hidden" }}>
       <Navbar />
-      <h1 className="text-3xl font-bold mb-4 text-center">🌍 World Focus App</h1>
-      <DraggablePomodoro />
-      <WorldGlobe cities={cities} onCityClick={setSelectedCity} />
+      <div style={{ paddingTop: "72px", height: "calc(100vh - 72px)", overflow: "hidden" }}>
+        <h1 className="text-3xl font-bold mb-4 text-center">🌍 World Focus App</h1>
+        <WorldGlobe cities={cities} onCityClick={setSelectedCity} />
 
       {/* Fullscreen video overlay */}
       {selectedCity && (
-        <div className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50">
+        <div
+          className="fixed left-0 right-0"
+          style={{
+            top: "72px",
+            bottom: 0,
+            background: "rgba(0,0,0,0.9)",
+            zIndex: 50,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            width: "100vw",
+            height: "calc(100vh - 64px)"
+          }}
+        >
           <div className="relative w-full h-full flex items-center justify-center">
             <iframe
               className="w-[90%] h-[90%] rounded-lg shadow-xl"
@@ -60,6 +72,7 @@ export default function App() {
           </div>
         </div>
       )}
+    </div>
     </div>
   );
 }

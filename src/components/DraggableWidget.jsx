@@ -1,8 +1,7 @@
 import { useState } from "react";
-import PomodoroTimer from "../components/PomodoroTimer";
 
-export default function DraggablePomodoro() {
-  const [pos, setPos] = useState({ x: 100, y: 100 });
+export default function DraggableWidget({ children, initialPos = { x: 100, y: 100 } }) {
+  const [pos, setPos] = useState(initialPos);
   const [dragging, setDragging] = useState(false);
   const [offset, setOffset] = useState({ x: 0, y: 0 });
 
@@ -38,7 +37,7 @@ export default function DraggablePomodoro() {
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}
     >
-      <PomodoroTimer />
+      {children}
     </div>
   );
 }
