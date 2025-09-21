@@ -1,11 +1,18 @@
 import { useState, useEffect } from "react";
 import WorldGlobe from "./pages/WorldGlobe";
 import Navbar from "./components/Navbar";
+import PomodoroTimer from "./components/PomodoroTimer";
+import DraggableWidget from "./components/DraggableWidget";
+import MusicPlayer from "./components/MusicPlayer";
 
 export default function App() {
   const [selectedCity, setSelectedCity] = useState(null);
   const [showBackButton, setShowBackButton] = useState(true);
   const [showNavbar, setShowNavbar] = useState(true);
+  const [showPomodoro, setShowPomodoro] = useState(false);
+  const [showMusicPlayer, setShowMusicPlayer] = useState(false);
+  const [pomodoroVisible, setPomodoroVisible] = useState(false);
+  const [musicPlayerVisible, setMusicPlayerVisible] = useState(false);
 
   const cities = [
     {
@@ -124,7 +131,24 @@ export default function App() {
         </button>
       )}
 
-      {showNavbar && <Navbar />}
+      {showNavbar && <Navbar 
+        onPomodoroToggle={() => {
+          if (!showPomodoro) {
+            setShowPomodoro(true);
+            setPomodoroVisible(true);
+          } else {
+            setPomodoroVisible(!pomodoroVisible);
+          }
+        }} 
+        onMusicPlayerToggle={() => {
+          if (!showMusicPlayer) {
+            setShowMusicPlayer(true);
+            setMusicPlayerVisible(true);
+          } else {
+            setMusicPlayerVisible(!musicPlayerVisible);
+          }
+        }} 
+      />}
 
       <div style={{ paddingTop: showNavbar ? "72px" : 0, height: "100vh", overflow: "hidden" }}>
         <WorldGlobe cities={cities} onCityClick={setSelectedCity} />
@@ -141,7 +165,24 @@ export default function App() {
               style={{ position: "absolute", top: 0, left: 0, width: "100vw", height: "100vh", zIndex: 0 }}
             />
 
-            {showNavbar && <div className="fixed top-0 left-0 w-full z-[100] pointer-events-auto"><Navbar /></div>}
+            {showNavbar && <div className="fixed top-0 left-0 w-full z-[100] pointer-events-auto"><Navbar 
+              onPomodoroToggle={() => {
+                if (!showPomodoro) {
+                  setShowPomodoro(true);
+                  setPomodoroVisible(true);
+                } else {
+                  setPomodoroVisible(!pomodoroVisible);
+                }
+              }} 
+              onMusicPlayerToggle={() => {
+                if (!showMusicPlayer) {
+                  setShowMusicPlayer(true);
+                  setMusicPlayerVisible(true);
+                } else {
+                  setMusicPlayerVisible(!musicPlayerVisible);
+                }
+              }} 
+            /></div>}
 
             {showBackButton && (
               <button
@@ -159,6 +200,27 @@ export default function App() {
           </div>
         )}
       </div>
+
+      {/* Draggable Music Player (left) */}
+      {showMusicPlayer && (
+        <DraggableWidget 
+          initialPos={{ x: 40, y: 120 }}
+          visible={musicPlayerVisible}
+          onClose={() => setMusicPlayerVisible(false)}
+        >
+          <MusicPlayer />
+        </DraggableWidget>
+      )}
+      {/* Draggable Pomodoro Timer (right) */}
+      {showPomodoro && (
+        <DraggableWidget 
+          initialPos={{ x: typeof window !== 'undefined' ? window.innerWidth - 350 : 1000, y: 120 }}
+          visible={pomodoroVisible}
+          onClose={() => setPomodoroVisible(false)}
+        >
+          <PomodoroTimer />
+        </DraggableWidget>
+      )}
     </div>
   );
 }
