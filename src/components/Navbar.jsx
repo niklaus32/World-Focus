@@ -62,11 +62,11 @@ function Navbar() {
         </DraggableWidget>
       )}
       {/* Draggable Pomodoro Timer (right) */}
-      {showPomodoro && (
-        <DraggableWidget initialPos={{ x: window.innerWidth - 350, y: 120 }}>
+      <DraggableWidget initialPos={{ x: window.innerWidth - 350, y: 120 }}>
+        <div className={showPomodoro ? "" : "hidden"}>
           <PomodoroTimer />
-        </DraggableWidget>
-      )}
+        </div>
+      </DraggableWidget>
     </>
   );
 }
