@@ -36,7 +36,6 @@ export default function App() {
     <div className="flex flex-col min-h-screen bg-black text-white" style={{ overflow: "hidden" }}>
       <Navbar />
       <div style={{ paddingTop: "72px", height: "calc(100vh - 72px)", overflow: "hidden" }}>
-        <h1 className="text-3xl font-bold mb-4 text-center">🌍 World Focus App</h1>
         <WorldGlobe cities={cities} onCityClick={setSelectedCity} />
 
       {/* Fullscreen video overlay */}

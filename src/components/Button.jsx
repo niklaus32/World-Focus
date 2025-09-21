@@ -1,9 +1,11 @@
-function Button({ children, onClick, type = "button" }) {
+function Button({ children, onClick, type = "button", pressed = false }) {
   return (
     <button
       type={type}
       onClick={onClick}
-      className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg shadow-md transition cursor-pointer"
+      className={`bg-blue-600 text-white px-3 py-1 rounded transition-all duration-150 shadow-md cursor-pointer
+        hover:opacity-80 active:scale-95
+        ${pressed ? "opacity-60" : "opacity-100"}`}
     >
       {children}
     </button>

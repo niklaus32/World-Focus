@@ -13,6 +13,7 @@ Feel free to reach out to any execs if you're struggling with these steps
 - Open the root directory of the project
 - Run `npm install` to install the Node dependencies (requires NodeJS installed)
 - Run `npm run dev` to start the app at the url [http://localhost:5173/]
+- Run `npm install react-icons`
 
 ## Useful Resources
 ### Git
