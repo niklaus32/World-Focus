@@ -3,10 +3,10 @@ import { FaVolumeUp, FaVolumeMute } from "react-icons/fa";
 
 export default function MusicPlayer() {
   const tracks = [
-    { name: "Lofi Hip Hop Radio", src: "https://www.youtubeinmp3.com/fetch/?video=jfKfPfyJRdk" },
-    { name: "Classical Music", src: "https://www.youtubeinmp3.com/fetch/?video=0UN_HbOTTcI" },
-    { name: "White Noise", src: "https://www.youtubeinmp3.com/fetch/?video=nMfPqeZjc2c" },
-    { name: "Brown Noise", src: "https://www.youtubeinmp3.com/fetch/?video=RqzGzwTY-6w" },
+    { name: "Lofi Hip Hop", src: "/lofi.mp3" },
+    { name: "Classical", src: "/classic.mp3" },
+    { name: "White Noise", src: "/white.mp3" },
+    { name: "Brown Noise", src: "/brown.mp3" },
   ];
 
   const [currentTrack, setCurrentTrack] = useState(tracks[0]);
@@ -55,6 +55,7 @@ export default function MusicPlayer() {
         transform: `scale(${scale})`,
         transformOrigin: "top left",
         width: "220px",
+        fontFamily: "'Varela Round', sans-serif",
       }}
     >
       {/* Line 1: Title + Zoom */}
@@ -86,6 +87,7 @@ export default function MusicPlayer() {
             setIsPlaying(false);
           }}
           className="w-full text-white px-2 py-1 rounded"
+          style={{ fontFamily: "'Varela Round', sans-serif" }}
         >
           {tracks.map((t) => (
             <option key={t.name} value={t.name}>{t.name}</option>
@@ -95,7 +97,7 @@ export default function MusicPlayer() {
 
       {/* Line 3: Volume slider */}
       <div className="flex items-center gap-2 mb-3">
-        <button onClick={toggleMute} className="text-white text-lg">
+        <button onClick={toggleMute} className="text-white text-lg flex-shrink-0">
           {muted ? <FaVolumeMute /> : <FaVolumeUp />}
         </button>
         <input
@@ -105,9 +107,10 @@ export default function MusicPlayer() {
           step={0.01}
           value={muted ? 0 : volume}
           onChange={(e) => setVolume(Number(e.target.value))}
-          className="w-3/4"
+          className="w-full"
           style={{
             accentColor: muted ? "#555" : "#4f46e5",
+            maxWidth: "140px",
           }}
         />
       </div>
@@ -119,19 +122,21 @@ export default function MusicPlayer() {
           className={`px-3 py-2 rounded-md text-white ${
             isPlaying ? "bg-slate-700 hover:bg-slate-800" : "bg-indigo-500 hover:bg-indigo-600"
           }`}
+          style={{ fontFamily: "'Varela Round', sans-serif" }}
         >
           {isPlaying ? "Pause" : "Play"}
         </button>
         <button
           onClick={playRandom}
           className="px-3 py-2 rounded-md bg-indigo-800 hover:bg-indigo-900 text-white"
+          style={{ fontFamily: "'Varela Round', sans-serif" }}
         >
           Random
         </button>
       </div>
 
-      {/* Audio element */}
-      <audio ref={audioRef} src={currentTrack.src} />
+      {/* Audio element with looping */}
+      <audio ref={audioRef} src={currentTrack.src} loop />
     </div>
   );
 }
