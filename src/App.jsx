@@ -16,7 +16,13 @@ export default function App() {
 
   return (
     <div className="relative min-h-screen bg-black text-white p-4">
-      <h1 className="text-3xl font-bold mb-4 text-center">World Focus App</h1>
+      <h1
+  className="text-3xl mb-4 text-center"
+  style={{ fontFamily: "'Dela Gothic One', cursive" }}
+>
+  WORLD FOCUS
+</h1>
+
 
       {/* Globe */}
       <WorldGlobe cities={cities} onCityClick={setSelectedCity} />

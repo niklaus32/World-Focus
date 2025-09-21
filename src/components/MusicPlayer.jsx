@@ -59,6 +59,7 @@ export default function MusicPlayer() {
         transform: `scale(${scale})`,
         transformOrigin: "top left",
         width: "220px",
+        fontFamily: "'Varela Round', sans-serif", // Apply Varela Round
       }}
     >
       {/* Line 1: Title + Zoom */}
@@ -90,6 +91,7 @@ export default function MusicPlayer() {
             setIsPlaying(false);
           }}
           className="w-full text-white px-2 py-1 rounded"
+          style={{ fontFamily: "'Varela Round', sans-serif" }}
         >
           {tracks.map((t) => (
             <option key={t.name} value={t.name}>{t.name}</option>
@@ -110,7 +112,9 @@ export default function MusicPlayer() {
           value={muted ? 0 : volume}
           onChange={(e) => setVolume(Number(e.target.value))}
           className="flex-1"
-          style={{ accentColor: muted ? "#555" : "#4f46e5" }}
+          style={{
+            accentColor: muted ? "#555" : "#4f46e5",
+          }}
         />
       </div>
 
@@ -121,12 +125,14 @@ export default function MusicPlayer() {
           className={`px-3 py-2 rounded-md text-white ${
             isPlaying ? "bg-slate-700 hover:bg-slate-800" : "bg-indigo-500 hover:bg-indigo-600"
           }`}
+          style={{ fontFamily: "'Varela Round', sans-serif" }}
         >
           {isPlaying ? "Pause" : "Play"}
         </button>
         <button
           onClick={playRandom}
           className="px-3 py-2 rounded-md bg-indigo-800 hover:bg-indigo-900 text-white"
+          style={{ fontFamily: "'Varela Round', sans-serif" }}
         >
           Random
         </button>
