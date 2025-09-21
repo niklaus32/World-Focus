@@ -104,7 +104,13 @@ export default function App() {
       {selectedCity && showBackButton && (
         <button
           onClick={() => setShowNavbar((prev) => !prev)}
-          className="fixed top-4 right-4 z-[100] bg-white/20 text-white px-3 py-2 rounded shadow hover:bg-white/40 transition"
+          //className="fixed top-4 right-4 z-[100] bg-white/20 text-white px-3 py-2 rounded shadow hover:bg-white/40 transition"
+          className={
+                  `fixed right-4 text-white text-2xl font-bold px-4 py-2 rounded-xl shadow-lg transition-all bg-white/10 hover:bg-white/20 duration-200 z-[101] ` +
+                  (showNavbar
+                    ? 'top-24 backdrop-blur bg-black/60 border border-white/10 hover:bg-black/80'
+                    : 'top-6 backdrop-blur bg-black/60 border border-white/10 hover:bg-black/80')
+                }
         >
           {showNavbar ? "Hide Navbar" : "Show Navbar"}
         </button>
@@ -112,7 +118,7 @@ export default function App() {
       {!selectedCity && (
         <button
           onClick={() => setShowNavbar((prev) => !prev)}
-          className="fixed top-4 right-4 z-[100] bg-white/20 text-white px-3 py-2 rounded shadow hover:bg-white/40 transition"
+          className="fixed top-4 right-4 z-[100] bg-white/20 text-white px-3 py-1 rounded shadow hover:bg-white/40 transition"
         >
           {showNavbar ? "Hide Navbar" : "Show Navbar"}
         </button>
@@ -141,7 +147,7 @@ export default function App() {
               <button
                 onClick={() => setSelectedCity(null)}
                 className={
-                  `fixed left-6 text-white text-2xl font-bold px-5 py-2 rounded-xl shadow-lg transition-all duration-200 z-[101] ` +
+                  `fixed left-6 text-white text-2xl font-bold px-4 py-2 rounded-xl shadow-lg transition-all bg-white/20 hover:bg-white/40 duration-200 z-[101] ` +
                   (showNavbar
                     ? 'top-24 backdrop-blur bg-black/60 border border-white/10 hover:bg-black/80'
                     : 'top-6 backdrop-blur bg-black/60 border border-white/10 hover:bg-black/80')

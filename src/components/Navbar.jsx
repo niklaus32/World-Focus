@@ -17,13 +17,13 @@ function Navbar() {
           </h1>
           <div className="flex items-center gap-4">
             <Button
-              className="bg-gradient-to-r from-blue-500 to-cyan-500 px-4 py-2 rounded-xl text-white font-semibold shadow-md hover:from-cyan-500 hover:to-blue-500 hover:scale-105 transition-all duration-200 border border-white/10"
+              className="bg-blue-600 px-3 py-1 rounded text-white"
               onClick={() => setShowMusicPlayer(!showMusicPlayer)}
             >
               Music Player
             </Button>
             <Button
-              className="bg-gradient-to-r from-purple-500 to-blue-500 px-4 py-2 rounded-xl text-white font-semibold shadow-md hover:from-blue-500 hover:to-purple-500 hover:scale-105 transition-all duration-200 border border-white/10"
+              className="bg-blue-600 px-3 py-1 rounded text-white"
               onClick={() => setShowPomodoro(!showPomodoro)}
             >
               Pomodoro
