@@ -15,10 +15,17 @@ export default function DraggableWidget({ children, initialPos = { x: 100, y: 10
 
   const handleMouseMove = (e) => {
     if (dragging) {
-      setPos({
-        x: e.clientX - offset.x,
-        y: e.clientY - offset.y,
-      });
+      const newX = e.clientX - offset.x;
+      const newY = e.clientY - offset.y;
+
+      const el = e.currentTarget;
+      const maxX = window.innerWidth - el.offsetWidth;
+      const maxY = window.innerHeight - el.offsetHeight;
+
+      const boundedX = Math.min(Math.max(0, newX), maxX);
+      const boundedY = Math.min(Math.max(0, newY), maxY);
+
+      setPos({ x: boundedX, y: boundedY });
     }
   };
 
