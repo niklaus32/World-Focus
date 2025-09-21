@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function DraggableWidget({ children, initialPos = { x: 100, y: 100 } }) {
+export default function DraggableWidget({ children, initialPos = { x: 100, y: 100 }, visible = true, onClose }) {
   const [pos, setPos] = useState(initialPos);
   const [dragging, setDragging] = useState(false);
   const [offset, setOffset] = useState({ x: 0, y: 0 });
@@ -41,6 +41,7 @@ export default function DraggableWidget({ children, initialPos = { x: 100, y: 10
         top: pos.y,
         zIndex: 9999,
         width: "fit-content",
+        display: visible ? "block" : "none",
       }}
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}
@@ -49,21 +50,48 @@ export default function DraggableWidget({ children, initialPos = { x: 100, y: 10
     >
       {/* Top Bar, only visible on hover */}
       <div
-        onMouseDown={handleMouseDown}
         style={{
-          cursor: "grab",
-          background: "bg-white/10 backdrop-blur",
-          width: "60%",
-          margin: "0 auto",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          background: "rgba(255, 255, 255, 0.1)",
+          backdropFilter: "blur(10px)",
+          width: "100%",
           borderTopLeftRadius: "6px",
           borderTopRightRadius: "6px",
-          textAlign: "center",
-          padding: "4px 0",
+          padding: "4px 8px",
           opacity: hovered ? 1 : 0,           // show/hide
           transition: "opacity 0.2s ease-in-out", // smooth fade
         }}
       >
-        • • •
+        <div
+          onMouseDown={handleMouseDown}
+          style={{
+            cursor: "grab",
+            textAlign: "center",
+            flex: 1,
+          }}
+        >
+          • • •
+        </div>
+        {onClose && (
+          <button
+            onClick={onClose}
+            style={{
+              background: "transparent",
+              border: "none",
+              color: "white",
+              cursor: "pointer",
+              fontSize: "16px",
+              padding: "2px 4px",
+              borderRadius: "3px",
+            }}
+            onMouseDown={(e) => e.stopPropagation()}
+            title="Hide widget"
+          >
+            ×
+          </button>
+        )}
       </div>
 
       {/* Widget content */}
