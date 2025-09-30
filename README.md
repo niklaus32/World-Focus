@@ -9,6 +9,11 @@ Focus on your studies or work while soothing music and scenic driving videos fro
 - Listen to soothing sounds or music while you work.
 - Use the built-in Pomodoro timer to structure study or work sessions.
 
+## Preview
+<img width="1920" height="1080" alt="Screenshot (10)" src="https://github.com/user-attachments/assets/11cc9045-ae8b-4698-926c-8c5f198119bf" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/0f81f4ee-64c5-498c-9280-a051baf25ae4" />
+
+
 ## Tech Stack
 - React
 - Tailwind CSS
