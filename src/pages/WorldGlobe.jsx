@@ -1,8 +1,62 @@
 import Globe from "react-globe.gl";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 
-export default function WorldGlobe({ cities, onCityClick }) {
+export default function WorldGlobe({
+  cities,
+  onCityClick,
+  autoRotate = true,     // default: rotate
+  autoRotateSpeed = 0.3  // default speed (tweakable)
+}) {
   const globeRef = useRef();
+
+  useEffect(() => {
+    const globe = globeRef.current;
+    if (!globe) return;
+
+    const controls = globe.controls();
+    if (!controls) return;
+
+    controls.autoRotate = !!autoRotate;
+    controls.autoRotateSpeed = autoRotateSpeed;
+
+    const onStart = () => { controls.autoRotate = false; };
+    const onEnd = () => { controls.autoRotate = !!autoRotate; };
+
+    try {
+      controls.addEventListener?.("start", onStart);
+      controls.addEventListener?.("end", onEnd);
+    } catch (e) {}
+
+    const globeEl = globeRef.current?.globeEl; 
+    if (globeEl) {
+      let pointerDown = false;
+      const handlePointerDown = () => {
+        pointerDown = true;
+        controls.autoRotate = false;
+      };
+      const handlePointerUp = () => {
+        pointerDown = false;
+        controls.autoRotate = !!autoRotate;
+      };
+      globeEl.addEventListener("pointerdown", handlePointerDown);
+      window.addEventListener("pointerup", handlePointerUp);
+
+      return () => {
+        globeEl.removeEventListener("pointerdown", handlePointerDown);
+        window.removeEventListener("pointerup", handlePointerUp);
+        try {
+          controls.removeEventListener?.("start", onStart);
+          controls.removeEventListener?.("end", onEnd);
+        } catch (e) {}
+      };
+    }
+
+    return () => {
+      try {
+        controls.autoRotate = false;
+      } catch (e) {}
+    };
+  }, [autoRotate, autoRotateSpeed]);
 
   const markerSvg = `<svg viewBox="-4 0 36 36">
     <path fill="currentColor" d="M14,0 C21.732,0 28,5.641 28,12.6 C28,23.963 14,36 14,36 C14,36 0,24.064 0,12.6 C0,5.641 6.268,0 14,0 Z"></path>
@@ -23,10 +77,8 @@ export default function WorldGlobe({ cities, onCityClick }) {
           el.innerHTML = markerSvg;
           el.style.color = d.color || "red";
           el.style.width = `${d.size || 20}px`;
-          el.style.transition = "opacity 250ms";
-          el.style.pointerEvents = "auto";
           el.style.cursor = "pointer";
-          el.style.position = "relative"; 
+          el.style.pointerEvents = "auto";
 
           const tooltip = document.createElement("div");
           tooltip.innerText = d.city;
@@ -45,16 +97,10 @@ export default function WorldGlobe({ cities, onCityClick }) {
           tooltip.style.transition = "opacity 150ms";
           el.appendChild(tooltip);
 
-          el.onmouseenter = () => {
-            tooltip.style.opacity = "1";
-          };
-          el.onmouseleave = () => {
-            tooltip.style.opacity = "0";
-          };
+          el.onmouseenter = () => (tooltip.style.opacity = "1");
+          el.onmouseleave = () => (tooltip.style.opacity = "0");
 
-          el.onclick = () => {
-            onCityClick(d);
-          };
+          el.onclick = () => onCityClick(d);
 
           return el;
         }}
